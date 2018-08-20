@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Github Repository Search!</h1>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" ng-model="repName" class="form-control glyphicon-search" placeholder="Enter repository name..." />
+    </div>
+    <div class="col-md-3">
+        <input type="button" value="Search" ng-click="getRepositories()" class="btn-primary search-btn" />
+    </div>
+    <div class="col-md-3">
+        <input type="button" ng-hide="showBookmarks" value="Bookmarks" ng-click="getBookmarks()" class="btn-primary search-btn" />
+        <input type="button" ng-show="showBookmarks" value="Back" ng-click="backBtn()" class="btn-primary search-btn" />
+    </div>
+</div>
+
+<div class="row gallery">
+    <div class="col-md-4 rep-container" ng-hide="showBookmarks" ng-repeat="rep in repositories">
+
+        <h2 class="rep-title">{{rep.name}}</h2>
+        <img class="avatar-img" src="{{rep.owner.avatar_url}}" />
+        <div class="glyphicon-bookmark add-bookmark" ng-click="addBookmark(rep)" data-id="{{rep.id}}">Add to bookmark</div>
+
+    </div>
+    <div class="col-md-4 rep-container" ng-show="showBookmarks" ng-repeat="rep in bookMarks">
+
+        <h2 class="rep-title">{{rep.name}}</h2>
+        <img class="avatar-img" src="{{rep.owner.avatar_url}}" />
+
+    </div>
+</div>
